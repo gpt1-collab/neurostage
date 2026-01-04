@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroStage — Public Speaking Practice Simulator</title>
+  <style>
+    :root {
+      /* FINAL SYSTEM — SIMULATOR-GRADE, CALM, AUTHORITATIVE */
+      --bg: #050812;                /* near-black navy */
+      --bg-soft: #0b1022;           /* stage shadow */
+      --card-glass: rgba(18, 26, 64, 0.62);
+      --text: #eef1ff;              /* high-legibility white */
+      --muted: #9aa3d4;             /* calm secondary */
+
+      /* SINGLE DOMINANT ACCENT (discipline > decoration) */
+      --accent: #5cc8ff;            /* neural cyan */
+      --accent-2: #7a86ff;          /* restrained electric blue */
+
+      /* STRUCTURAL */
+      --border: rgba(140,160,255,0.16);
+      --glow: 0 0 32px rgba(92,200,255,0.22);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(900px 500px at 70% -220px, rgba(122,134,255,0.18), transparent 60%),
+        radial-gradient(700px 420px at 12% 22%, rgba(92,200,255,0.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), #03050c 70%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      padding: 120px 24px 140px;
+      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header h1 {
+      font-size: clamp(2.8rem, 5vw, 3.4rem);
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+    header p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 40px;
+    }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #02040a;
+      padding: 18px 40px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: var(--glow);
+      letter-spacing: 0.01em;
+    }
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 88px 24px;
+    }
+    .grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(20,30,80,0.55), var(--card-glass));
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 36px;
+      backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px 220px at -20% -40%, rgba(92,200,255,0.12), transparent 60%);
+      pointer-events: none;
+    }
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 2.2rem);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin-top: 0;
+    }
+    .muted { color: var(--muted); }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 88px 0;
+    }
+    .steps { counter-reset: step; }
+    .step { position: relative; padding-left: 64px; }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #02040a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      box-shadow: var(--glow);
+    }
+    form {
+      max-width: 440px;
+      margin: 40px auto 0;
+      display: grid;
+      gap: 18px;
+    }
+    input {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(12,18,36,0.9);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    button {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #02040a;
+      border: none;
+      border-radius: 999px;
+      padding: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--glow);
+      letter-spacing: 0.01em;
+    }
+    footer {
+      padding: 64px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NeuroStage</h1>
+    <p><strong>Practice infrastructure for public speaking.</strong><br />Most public speaking happens only when the stakes are already high. NeuroStage exists to make deliberate, repeatable training possible — before performance, not during it.</p>
+    <button class="cta" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSc3yanWic6x3LWUYA3sLw2ucWLjVDl7_qjAryPwnzlhdl_Xaw/viewform?usp=dialog','_blank','noopener')">Join the Waitlist</button>
+  </header>
+
+  <section>
+    <h2>The Problem</h2>
+    <p class="muted">Public speaking has advice, courses, and coaches — but no dedicated place to practice. Most people only speak when it counts, receive vague feedback afterward, and never build real repetitions.</p>
+    <div class="grid">
+      <div class="card">No low‑stakes environment for deliberate practice</div>
+      <div class="card">Feedback arrives after the moment has passed</div>
+      <div class="card">Progress is hard to measure or repeat</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Solution</h2>
+    <p class="muted">NeuroStage is an AI‑powered public‑speaking simulator designed for training, not performance. You practice in front of virtual audiences that react in real time — confusion, interest, boredom, applause.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Real Reps</h3>
+        <p>Train through short, repeatable drills instead of relying on full, high‑stakes performances.</p>
+      </div>
+      <div class="card">
+        <h3>Live Resistance</h3>
+        <p>The audience responds dynamically as you speak, requiring real‑time adjustment.</p>
+      </div>
+      <div class="card">
+        <h3>Visible Progress</h3>
+        <p>See how engagement, clarity, and confidence change across sessions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How It Works</h2>
+    <div class="grid steps">
+      <div class="card step">
+        <h3>Choose a Scenario</h3>
+        <p>Select a focused drill and an audience profile — investors, students, executives.</p>
+      </div>
+      <div class="card step">
+        <h3>Speak & Adapt</h3>
+        <p>The audience reacts live as attention and engagement rise or fall.</p>
+      </div>
+      <div class="card step">
+        <h3>Review & Repeat</h3>
+        <p>Review what happened and repeat the drill at a higher level of difficulty.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who It's For</h2>
+    <div class="grid">
+      <div class="card">Students & graduates</div>
+      <div class="card">Professionals & founders</div>
+      <div class="card">Universities & companies</div>
+      <div class="card">Public‑speaking coaches</div>
+    </div>
+  </section>
+
+  
+
+  <footer>
+    © 2026 NeuroStage. Concept demo for validation purposes.
+  </footer>
+</body>
+</html>
